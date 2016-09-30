@@ -8,6 +8,7 @@ public class Quiz {
         Answers a = new Answers();
         a.addAnswer(new Pair("a","answer1"));
         a.addAnswer(new Pair("b","answer2"));
-        System.out.println(a.toString());
+        Question q = new Question("Question1",a,"a");
+        System.out.println(q.toString());
     }
 }
