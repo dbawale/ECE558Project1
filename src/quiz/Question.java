@@ -1,5 +1,5 @@
 package quiz;
 
-public class Quiz {
+public class Question {
 
 }
