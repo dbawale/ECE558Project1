@@ -2,10 +2,7 @@ package quiz;
 
 import javafx.util.Pair;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Main {
+public class Quiz {
 
     public static void main(String[] args) {
         Answers a = new Answers();
