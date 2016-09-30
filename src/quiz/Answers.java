@@ -1,7 +1,7 @@
 package quiz;
 
-import javafx.util.Pair;
 
+import javafx.util.Pair; //This import statement is needed for the pair data structure that maps keys to values
 import java.util.ArrayList;
 import java.util.List;
 
