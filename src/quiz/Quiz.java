@@ -11,6 +11,27 @@ class Quiz {
     private static ArrayList<Question> questions;
 
     /**
+     * Default constructor for the quiz class.
+     * Sets the title to an empty string and initializes the questions ArrayList
+     */
+    public Quiz(){
+        this.title = "";
+        this.questions = new ArrayList<>();
+    }
+
+    /**
+     * Parameterized constructor for supporting a Quiz API.
+     * Sets the given parameters to be the members of this instantiation of the Quiz class
+     * @param title The title of the quiz being instantiated
+     * @param questions The questions of the quiz. ArrayList should be properly instantiated before calling this constructor
+     */
+    public Quiz(String title, ArrayList<Question> questions){
+
+        this.title = title;
+        this.questions = questions;
+    }
+
+    /**
      * Getter for the title of the quiz
      * @return The title of the quiz
      */
@@ -44,14 +65,7 @@ class Quiz {
         Quiz.questions = questions;
     }
 
-    /**
-     * Method to allow the user to set up a custom quiz.
-     * Details to come.
-     * TODO: Add custom quiz logic.
-     */
-    public static void SetUpCustomQuiz(){
-        throw new NotImplementedException();
-    }
+
 
     /**
      * The default setup method for the Capitals of the World quiz.
