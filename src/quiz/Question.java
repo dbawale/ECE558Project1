@@ -4,10 +4,10 @@ package quiz;
  * The Question class. Each question has an Answers object.
  * Each Question also has a string that stores the key to the correct answer
  */
-public class Question {
-    String question;
-    Answers answers;
-    String correctanswer;
+class Question {
+    private String question;
+    private Answers answers;
+    private String correctanswer;
 
     /**
      * Getter for the question string

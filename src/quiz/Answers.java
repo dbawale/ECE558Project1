@@ -9,12 +9,12 @@ import java.util.List;
  * The class Answers.
  * Contains an ArrayList of type Pair<String,String> for the answers
  */
-public class Answers {
+class Answers {
 
     /**
      * A list of key value pairs for answers
      */
-    List<Pair<String,String>> answers;
+    private List<Pair<String,String>> answers;
 
     /**
      * Default constructor for the Answers class
@@ -43,7 +43,7 @@ public class Answers {
      * Adds a single pair to the current list of answers
      * @param answer The pair to be added
      */
-    public void addAnswer(Pair<String,String> answer){
+     void addAnswer(Pair<String,String> answer){
         if(answers!=null){
             answers.add(answer);
         }
