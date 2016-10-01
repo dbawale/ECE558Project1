@@ -6,6 +6,10 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * The Quiz class. Each quiz has an ArrayList of questions.
+ * It also has a String for the title of the quiz
+ */
 class Quiz {
     private static String title;
     private static ArrayList<Question> questions;
@@ -65,6 +69,22 @@ class Quiz {
         Quiz.questions = questions;
     }
 
+    /**
+     * Get the complete solution for the quiz, with questions, answers and correct answers.
+     * @return The formatted string with the entire solution.
+     */
+    public String getSolution(){
+        StringBuilder sb = new StringBuilder();
+        for (Question q :
+                this.questions) {
+            sb.append(q.toString());
+            sb.append("\n");
+            sb.append("Correct answer: ");
+            sb.append(q.getCorrectanswer());
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
 
 
     /**
