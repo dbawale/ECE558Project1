@@ -1,7 +1,6 @@
 package quiz;
 
 import javafx.util.Pair;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,9 +17,9 @@ class Quiz {
      * Default constructor for the quiz class.
      * Sets the title to an empty string and initializes the questions ArrayList
      */
-    public Quiz(){
-        this.title = "";
-        this.questions = new ArrayList<>();
+     Quiz(){
+        title = "";
+        questions = new ArrayList<>();
     }
 
     /**
@@ -31,8 +30,8 @@ class Quiz {
      */
     public Quiz(String title, ArrayList<Question> questions){
 
-        this.title = title;
-        this.questions = questions;
+        title = title;
+        questions = questions;
     }
 
     /**
@@ -73,10 +72,10 @@ class Quiz {
      * Get the complete solution for the quiz, with questions, answers and correct answers.
      * @return The formatted string with the entire solution.
      */
-    public String getSolution(){
+     String getSolution(){
         StringBuilder sb = new StringBuilder();
         for (Question q :
-                this.questions) {
+                questions) {
             sb.append(q.toString());
             sb.append("\n");
             sb.append("Correct answer: ");
@@ -93,7 +92,7 @@ class Quiz {
      * Also sets the correct answers for each question.
      * If you want to set up the default quiz and play with it, just call this method.
      */
-    public static void SetupDefaultQuiz(){
+    void setupDefaultQuiz(){
         questions = new ArrayList<>();
         title = "Capital Cities of the World!";
         Answers a = new Answers();
@@ -164,7 +163,7 @@ class Quiz {
         a.addAnswer(new Pair<>("b","Sao Paulo"));
         a.addAnswer(new Pair<>("c","Brasilia"));
         a.addAnswer(new Pair<>("d","Salvador"));
-        q = new Question("What is the capital of Brazil?",a,"a");
+        q = new Question("What is the capital of Brazil?",a,"c");
         questions.add(q);
         Collections.shuffle(questions);
     }
