@@ -6,17 +6,43 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import static java.lang.System.exit;
+
 public class Main {
     static int score;
     public static void main(String[] args){
+        Boolean retake = true;
+        Boolean inputerror = false;
         Quiz quiz = startQuiz();
         score =0;
-        try {
-            playQuiz(quiz);
-        }
-        catch(IOException e){
-            System.err.println("There was an input/output error. Please try again");
-        }
+        do {
+            if(!inputerror) {
+                try {
+                    playQuiz(quiz);
+                } catch (IOException e) {
+                    System.err.println("There was an input/output error. Please try again");
+                }
+            }
+            System.out.println("Do you want to take the quiz again? (y|n)");
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            try {
+                inputerror = false;
+                String playagain = br.readLine();
+                if(playagain.equals("y")||playagain.equals("Y")){
+                    continue;
+                }
+                else if(playagain.equals("n")||playagain.equals("N")){
+                    retake=false;
+                }
+                else{
+                    System.err.println("You entered an incorrect value. Please try again.");
+                    inputerror=true;
+                }
+            } catch (IOException e) {
+                System.err.println("Problem with input/output. Exiting application.");
+                exit(1);
+            }
+        }while(retake);
     }
 
      private static Quiz startQuiz(){
@@ -35,6 +61,11 @@ public class Main {
                 if (!validateOptions(answer)) return;
                 if (answer.charAt(0) == q.getCorrectanswer().charAt(0)) {
                     score += 1;
+                    System.out.println("Correct!");
+                }
+                else
+                {
+                    System.out.println("Incorrect!");
                 }
                 System.out.println("Score: " + score);
             }
@@ -43,13 +74,6 @@ public class Main {
             float percent = (float) (score / quiz.getQuestions().size()) * 100;
             System.out.println("Percentage: " + percent);
         }
-
-    private static boolean validateYesNo(String takeagain) throws IOException {
-        if(takeagain.matches("y") || takeagain.matches("Y")) return true;
-        else if(takeagain.matches("n")||takeagain.matches("N")) return false;
-        else throw new IOException();
-    }
-
 
     /**
      * Validates user input. Uses a regular expression
