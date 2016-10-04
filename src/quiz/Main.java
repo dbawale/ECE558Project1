@@ -5,21 +5,34 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import static java.lang.System.exit;
 
 public class Main {
-    static int score;
+    static int score;// Maintains the score for the quiz
+
+    /**
+     * Main method for the project. Keeps executing PlayQuiz until user inputs 'n' at the end
+     * @param args Command line arguments, not used for this project.
+     */
     public static void main(String[] args){
-        Boolean retake = true;
-        Boolean inputerror = false;
+
+        Boolean inputerror = false; //tracks whether there was an input error
         Quiz quiz = startQuiz();
-        score =0;
-        do {
-            if(!inputerror) {
-                try {
+
+        score =0; //in the beginning the score is 0
+
+        //keep taking the quiz until user inputs 'n' at the end of the quiz
+        while(true){
+            //if there was no input error in the previous iteration
+            if(!inputerror)
+            {
+                try
+                {
                     playQuiz(quiz);
-                } catch (IOException e) {
+                } catch (IOException e)
+                {
                     System.err.println("There was an input/output error. Please try again");
                 }
             }
@@ -28,13 +41,20 @@ public class Main {
             try {
                 inputerror = false;
                 String playagain = br.readLine();
-                if(playagain.equals("y")||playagain.equals("Y")){
+
+                //continue playing if the user wants to play again
+                if(playagain.equals("y")||playagain.equals("Y"))
+                {
                     continue;
                 }
-                else if(playagain.equals("n")||playagain.equals("N")){
-                    retake=false;
+                //otherwise break the loop
+                else if(playagain.equals("n")||playagain.equals("N"))
+                {
+                    break;
                 }
-                else{
+                //if user enters anything other than y,Y,n or N, set inputerror and ask again
+                else
+                {
                     System.err.println("You entered an incorrect value. Please try again.");
                     inputerror=true;
                 }
@@ -42,43 +62,60 @@ public class Main {
                 System.err.println("Problem with input/output. Exiting application.");
                 exit(1);
             }
-        }while(retake);
+        }
     }
 
+    /**
+     * Sets up the default quiz.
+     * @return The quiz, with all questions and answers
+     */
      private static Quiz startQuiz(){
         Quiz quiz = new Quiz();
         quiz.setupDefaultQuiz();
          return quiz;
      }
 
+    /**
+     * The play quiz method. Displays the questions and interacts with the user, waiting for user input.
+     * Displays whether the current question was answered correctly or not. Displays the score at the end of the game.
+     * @param quiz The Quiz object to be played
+     * @throws IOException When there is a problem with the input/output device, or when input cannot be read.
+     */
     private static void playQuiz(Quiz quiz) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            for (Question q :
-                    quiz.getQuestions()) {
-                System.out.println(q.toString());
+        ArrayList<Question> questions = quiz.getQuestions();
+        int i=0;
+        //repeat for all questions
+       while(i<questions.size())
+        {
+                Boolean isvalidinput = true;
+                System.out.println(questions.get(i).toString());
                 System.out.print("Enter correct option:");
                 String answer = br.readLine();
-                if (!validateOptions(answer)) return;
-                if (answer.charAt(0) == q.getCorrectanswer().charAt(0)) {
+                if (!validateOptions(answer)) {
+                    System.out.println("Please choose one of the four displayed options (eg, a).");
+                    isvalidinput=false;
+                }
+            if(isvalidinput) {
+                if (answer.toLowerCase().charAt(0) == questions.get(i).getCorrectanswer().toLowerCase().charAt(0)) {
                     score += 1;
                     System.out.println("Correct!");
-                }
-                else
-                {
+                } else {
                     System.out.println("Incorrect!");
                 }
                 System.out.println("Score: " + score);
+                i+=1;
             }
-            //TODO: Check and fix percentage print format
-            System.out.println("Your score is: " + score + "/" + quiz.getQuestions().size());
-            float percent = (float) (score / quiz.getQuestions().size()) * 100;
-            System.out.println("Percentage: " + percent);
+        }
+            System.out.println("Your final score is: " + score + "/" + quiz.getQuestions().size());
+            float percent = (((float)score / (float)quiz.getQuestions().size()) * 100);
+            System.out.printf("Percentage: %.2f\n" ,percent);
         }
 
     /**
      * Validates user input. Uses a regular expression
-     * @param answer
-     * @return
+     * @param answer The input to validate
+     * @return True or false, depending on whether it matches [a-d]+
      */
     private static boolean validateOptions(String answer) {
         return answer.matches("[a-d]+");
