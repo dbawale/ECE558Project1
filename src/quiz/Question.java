@@ -29,7 +29,7 @@ class Question {
      * Getter for the correct answer
      * @return The correct answer
      */
-    public String getCorrectanswer() {
+    String getCorrectanswer() {
         return correctanswer;
     }
 
@@ -86,10 +86,7 @@ class Question {
      * @return False if answer is incorrect, true if answer is correct
      */
     public Boolean isCorrectAnswer(String currentanswer){
-        if(this.correctanswer.equals(currentanswer)){
-            return true;
-        }
-        return false;
+        return this.correctanswer.equals(currentanswer);
     }
 
     /**
