@@ -10,14 +10,25 @@ import java.util.Collections;
  * It also has a String for the title of the quiz
  */
 class Quiz {
+    private int score;
     private static String title;
     private static ArrayList<Question> questions;
 
+    void incrementScore(){
+        score+=1;
+    }
+
+    public int getScore(){
+        return this.score;
+    }
+
     /**
      * Default constructor for the quiz class.
-     * Sets the title to an empty string and initializes the questions ArrayList
+     * Sets the title to an empty string and initializes the questions ArrayList.
+     * Sets the score to 0
      */
      Quiz(){
+         score=0;
         title = "";
         questions = new ArrayList<>();
     }
@@ -32,6 +43,7 @@ class Quiz {
 
         title = title;
         questions = questions;
+        score=0;
     }
 
     /**

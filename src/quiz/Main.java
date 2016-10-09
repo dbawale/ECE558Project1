@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import static java.lang.System.exit;
 
 public class Main {
-    static int score;// Maintains the score for the quiz
 
     /**
      * Main method for the project. Keeps executing PlayQuiz until user inputs 'n' at the end
@@ -21,7 +20,6 @@ public class Main {
         Boolean inputerror = false; //tracks whether there was an input error
         Quiz quiz = startQuiz();
 
-        score =0; //in the beginning the score is 0
 
         //keep taking the quiz until user inputs 'n' at the end of the quiz
         while(true){
@@ -93,22 +91,23 @@ public class Main {
                 System.out.print("Enter correct option:");
                 String answer = br.readLine();
                 if (!validateOptions(answer)) {
-                    System.out.println("Please choose one of the four displayed options (eg, a).");
+                    System.out.println("Please choose one of the four displayed options (eg, a).\n" +
+                    "Answer the question again:");
                     isvalidinput=false;
                 }
             if(isvalidinput) {
                 if (answer.toLowerCase().charAt(0) == questions.get(i).getCorrectanswer().toLowerCase().charAt(0)) {
-                    score += 1;
+                    quiz.incrementScore();
                     System.out.println("Correct!");
                 } else {
                     System.out.println("Incorrect!");
                 }
-                System.out.println("Score: " + score);
+                System.out.println("Score: " + quiz.getScore());
                 i+=1;
             }
         }
-            System.out.println("Your final score is: " + score + "/" + quiz.getQuestions().size());
-            float percent = (((float)score / (float)quiz.getQuestions().size()) * 100);
+            System.out.println("Your final score is: " + quiz.getScore() + "/" + quiz.getQuestions().size());
+            float percent = (((float)quiz.getScore() / (float)quiz.getQuestions().size()) * 100);
             System.out.printf("Percentage: %.2f\n" ,percent);
         }
 
