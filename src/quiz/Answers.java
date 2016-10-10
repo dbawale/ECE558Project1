@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The class Answers.
- * Contains an ArrayList of type Pair<String,String> for the answers
+ * @author Deven Bawale         dbawale@pdx.edu
+ * The Answers class. Holds the answers for a {@link quiz.Question Question}
+ *
  */
 class Answers {
 

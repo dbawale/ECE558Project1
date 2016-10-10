@@ -1,3 +1,4 @@
+
 package quiz;
 
 import javafx.util.Pair;
@@ -6,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * The Quiz class. Each quiz has an ArrayList of questions.
- * It also has a String for the title of the quiz
+ * @author Deven Bawale   dbawale@pdx.edu
+ * The {@link quiz.Quiz} class. Knows a title, a list of {@link quiz.Question Question}s and score
  */
 class Quiz {
     private int score;
