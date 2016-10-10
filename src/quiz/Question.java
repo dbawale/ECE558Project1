@@ -1,7 +1,8 @@
 package quiz;
 
 /**
- * The Question class. Each question has an Answers object.
+ * @author  Deven Bawale       dbawale@pdx.edu
+ * The Question class. Each question has an {@link Answers Answers} object.
  * Each Question also has a string that stores the key to the correct answer
  */
 class Question {
@@ -43,7 +44,7 @@ class Question {
 
     /**
      * Getter for all the answers for the current question
-     * @return The <Answers/> object
+     * @return The {@link Answers Answers} object
      */
     public Answers getAnswers() {
         return answers;

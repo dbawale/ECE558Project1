@@ -1,6 +1,5 @@
-package quiz;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+package quiz;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,6 +8,11 @@ import java.util.ArrayList;
 
 import static java.lang.System.exit;
 
+/**
+ * @author Deven Bawale   dbawale@pdx.edu
+ * The main file for console {@link quiz.Quiz Quiz} application. Includes the main class
+ * that interacts with the user
+ */
 public class Main {
 
     /**
@@ -118,15 +122,5 @@ public class Main {
      */
     private static boolean validateOptions(String answer) {
         return answer.matches("[a-d]+");
-    }
-
-    /**
-     * Allows the user to set up a custom quiz with questions, answers and correct answers
-     * @throws IOException When input/output error occurs.
-     * TODO: Add method logic, interaction with user and creation of new quiz
-     */
-    public void setupCustomQuiz() throws IOException {
-        throw new NotImplementedException();
-
     }
 }
